@@ -1,0 +1,51 @@
+[
+    { 
+        "id": 1, 
+        "name": "Thực phẩm tươi sống" 
+    },
+
+    { 
+        "id": 2, 
+        "name": "Thực phẩm đông lạnh" 
+    },
+
+    { 
+        "id": 3, 
+        "name": "Thực phẩm khô" 
+    },
+
+    { 
+        "id": 4, 
+        "name": "Đồ uống" 
+    },
+
+    { 
+        "id": 5, 
+        "name": "Đồ dùng gia đình" 
+    },
+    
+    { 
+        "id": 6, 
+        "name": "Mỹ phẩm & Chăm sóc cá nhân" 
+    },
+    
+    { 
+        "id": 7, 
+        "name": "Chất tẩy rửa & Vệ sinh nhà cửa" 
+    },
+
+    { 
+        "id": 8, 
+        "name": "Đồ ăn vặt & Ăn nhẹ" 
+    },
+
+    { 
+        "id": 9,
+        "name": "Đồ dùng cho Mẹ & Bé" 
+    },
+
+    { 
+        "id": 10, 
+        "name": "Văn phòng phẩm & Tiện ích"
+    }
+]

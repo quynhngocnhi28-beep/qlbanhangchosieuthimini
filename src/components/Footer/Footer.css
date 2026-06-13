@@ -1,0 +1,139 @@
+.salemini-footer {
+  background-color: #fbc2c2;
+  color: #333;
+  padding: 30px 0;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  width: 100%;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.footer-main-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1.2fr 1.6fr; 
+  gap: 30px;
+  margin-bottom: 25px;
+}
+
+.footer-title {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: #222;
+}
+
+.footer-links {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-links li {
+  margin-bottom: 6px;
+}
+
+.footer-links a {
+  text-decoration: none;
+  color: #333;
+  font-size: 14px;
+}
+
+.footer-text {
+  font-size: 14px;
+  margin: 4px 0;
+}
+
+.footer-line {
+  border: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  margin: 20px 0;
+}
+
+.footer-bottom-grid {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.company-name {
+  font-size: 17px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.company-info p {
+  font-size: 13.5px;
+  margin: 3px 0;
+  color: #444;
+}
+
+.social-app-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.social-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+.social-label {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.social-icons {
+  display: flex;
+  gap: 12px;
+}
+
+.s-icon {
+  width: 38px;
+  height: 38px;
+  background: #fff;
+  border-radius: 8px; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  text-decoration: none;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.fb { color: #1877F2; }
+.tg { color: #0088cc; }
+.ig { color: #E4405F; }
+.tt { 
+    color: #000000; 
+    font-size: 20px;
+}
+.yt { color: #E4405F; }
+
+
+.download-text {
+  font-size: 13px;
+  margin-top: 8px;
+  font-weight: 500;
+}
+
+@media (max-width: 768px) {
+  .footer-main-grid {
+    grid-template-columns: 1fr;
+  }
+  .footer-bottom-grid {
+    flex-direction: column;
+    gap: 20px;
+  }
+  .social-app-container {
+    align-items: flex-start;
+  }
+  .social-wrapper {
+    align-items: flex-start;
+  }
+}
