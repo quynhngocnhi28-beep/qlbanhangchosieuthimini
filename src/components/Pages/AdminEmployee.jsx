@@ -2,6 +2,7 @@ import React, { useEffect, useState, useCallback, useMemo } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import './Admin.css';
+import { Pencil, Trash2 } from 'lucide-react';
 
 const jsonBase = import.meta.env.BASE_URL || '/';
 
@@ -241,7 +242,7 @@ function AdminEmployee({ embedded = false }) {
                   <th>Giới tính</th>
                   <th>Ngày sinh</th>
                   <th>Điện thoại</th>
-                  <th />
+                  <th>Thao tác</th>
                 </tr>
               </thead>
               <tbody>
@@ -257,9 +258,21 @@ function AdminEmployee({ embedded = false }) {
                   displayedRows.map((r) => (
                     <tr key={r.id}>
                       <td>{r.id}</td>
-                      <td>{r.role}</td>
-                      <td>{r.name}</td>
-                      <td>{r.gender}</td>
+                      <td>
+                        <div className="text-align-left-wrapper-2">
+                          {r.role}
+                        </div>
+                      </td>
+                      <td>
+                        <div className="text-align-left-wrapper-3">
+                          {r.name}
+                        </div>
+                      </td>
+                      <td>
+                        <div className="text-align-left-wrapper-2">
+                          {r.gender}
+                        </div>
+                      </td>
                       <td>{r.birthdate}</td>
                       <td>{r.phone}</td>
                       <td>
@@ -270,15 +283,18 @@ function AdminEmployee({ embedded = false }) {
                             onClick={() => openEdit(r)}
                             disabled={saving}
                           >
-                            Sửa
+                            <Pencil size={14} /> Sửa
                           </button>
+
+                          <span className="admin-table_separator">/</span>
+
                           <button
                             type="button"
                             className="admin-table_link admin-table_link--danger"
                             onClick={() => handleDelete(r.id)}
                             disabled={saving}
                           >
-                            Xóa
+                            <Trash2 size={14} /> Xóa
                           </button>
                         </div>
                       </td>

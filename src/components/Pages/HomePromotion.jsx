@@ -4,7 +4,7 @@ import './HomePromotion.css';
 
 function HomePromotion() {
     const navItems = [
-        { id: 1, label: 'Nhân hàng', icon: Users },
+        { id: 1, label: 'Nhãn hàng', icon: Users },
         { id: 2, label: 'Cửa hàng', icon: MapPin },
         { id: 3, label: 'Thẻ VIP', icon: Award },
         { id: 4, label: 'Flash Sale', icon: Zap },

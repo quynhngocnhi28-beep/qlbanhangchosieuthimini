@@ -2,6 +2,8 @@ import React, { useEffect, useState, useCallback, useMemo } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import './Admin.css';
+import { imageMap } from '../../utils/productImages';
+import { Pencil, Trash2 } from 'lucide-react';
 
 const jsonBase = import.meta.env.BASE_URL || '/';
 
@@ -34,6 +36,7 @@ function productToForm(p) {
     rating: p.rating !== null ? String(p.rating) : '',
     sold: p.sold !== null ? String(p.sold) : '',
     categoryid: p.categoryid !== null ? String(p.categoryid) : '',
+    stock: p.stock !== null ? String(p.stock) : '',
   };
 }
 
@@ -52,6 +55,7 @@ function formToProduct(form, nextId) {
     rating: Number(form.rating) || 0,
     sold: Number(form.sold) || 0,
     categoryid: Number(form.categoryid) || 0,
+    stock: Number(form.stock) || 0,
   };
 }
 
@@ -215,6 +219,11 @@ function AdminProduct({ embedded = false }) {
     setAppliedSearchId('');
   };
 
+  const getProductImage = (key) => {
+    // Nếu imageMap là object dạng: { sp1: '...', sp2: '...' }
+    return imageMap[key] || '/img/default.png';
+  };
+
   const bodyContent = (
     <div className="admin-row">
       {loadError && <div className="admin-msg admin-msg--error">{loadError}</div>}
@@ -259,11 +268,13 @@ function AdminProduct({ embedded = false }) {
                 <tr>
                   <th>ID</th>
                   <th>Tên</th>
-                  <th>Ảnh (key)</th>
+                  <th>Hình ảnh</th>
                   <th>Giá gốc</th>
                   <th>Giá hiện tại</th>
                   <th>Danh mục</th>
-                  <th />
+                  <th>Kho hàng</th>
+                  <th>Đã bán</th>
+                  <th>Thao tác</th>
                 </tr>
               </thead>
               <tbody>
@@ -279,11 +290,22 @@ function AdminProduct({ embedded = false }) {
                   displayedProducts.map((p) => (
                     <tr key={p.id}>
                       <td>{p.id}</td>
-                      <td>{p.name}</td>
-                      <td>{p.imageKey}</td>
+                      <td>
+                        <div className="text-align-left-wrapper">
+                          {p.name}
+                        </div>
+                      </td>
+                      <td><img
+                        src={getProductImage(p.imageKey)}
+                        alt={p.name}
+                        style={{ width: '70px', height: '70px', objectFit: 'cover' }}
+                        onError={(e) => { e.target.src = '/img/default.png'; }}
+                      /></td>
                       <td>{p.originalPrice}</td>
                       <td>{p.currentPrice}</td>
                       <td>{p.categoryId}</td>
+                      <td>{p.stock}</td>
+                      <td>{p.sold}</td>
                       <td>
                         <div className="admin-table_actions">
                           <button
@@ -292,15 +314,18 @@ function AdminProduct({ embedded = false }) {
                             onClick={() => openEdit(p)}
                             disabled={saving}
                           >
-                            Sửa
+                            <Pencil size={14} /> Sửa
                           </button>
+
+                          <span className="admin-table_separator">/</span>
+
                           <button
                             type="button"
                             className="admin-table_link admin-table_link--danger"
                             onClick={() => handleDelete(p.id)}
                             disabled={saving}
                           >
-                            Xóa
+                            <Trash2 size={14} /> Xóa
                           </button>
                         </div>
                       </td>

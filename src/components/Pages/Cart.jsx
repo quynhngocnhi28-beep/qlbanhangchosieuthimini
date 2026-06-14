@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Trash2, Calendar, FileText } from 'lucide-react'; 
+import { Trash2, Calendar, FileText, User } from 'lucide-react';
 import { imageMap } from '../../utils/productImages';
 import './Cart.css';
 
@@ -13,6 +13,7 @@ const Cart = () => {
     const [cartItems, setCartItems] = useState([]);
     const [coupon, setCoupon] = useState('');
     const [discount, setDiscount] = useState(0);
+    const [recipientName, setRecipientName] = useState('');
 
     // --- LOGIC SẮP XẾP: Hàng đặt trước lên đầu ---
     const sortCartItems = (items) => {
@@ -36,7 +37,7 @@ const Cart = () => {
         window.dispatchEvent(new Event('cartUpdated'));
     };
 
-    const isSameProduct = (item, id, size, isPreOrder) => 
+    const isSameProduct = (item, id, size, isPreOrder) =>
         item.id === id && item.selectedSize === size && item.isPreOrder === isPreOrder;
 
     // Hàm cập nhật ngày giao hàng
@@ -89,22 +90,25 @@ const Cart = () => {
     const formatPrice = (price) => new Intl.NumberFormat('vi-VN').format(price) + 'đ';
 
     const handleCheckout = () => {
-        const missingDateItem = cartItems.find(item => 
-            item.isPreOrder && !item.deliveryDate
-        );
+        const isNameMissing = !recipientName.trim();
+        const isDateMissing = cartItems.some(item => item.isPreOrder && !item.deliveryDate);
 
-        if (missingDateItem) {
-            alert("Vui lòng chọn đầy đủ ngày giao hàng cho sản phẩm đặt trước.");
-            return;
+        if (isNameMissing && isDateMissing) {
+            alert("Vui lòng nhập đầy đủ ngày giao hàng và tên người nhận cho sản phẩm đặt trước!");
+        } else if (isNameMissing) {
+            alert("Vui lòng nhập tên người nhận cho sản phẩm đặt trước!");
+        } else if (isDateMissing) {
+            alert("Vui lòng chọn ngày giao hàng cho sản phẩm đặt trước!");
+        } else {
+            console.log("Đặt hàng thành công!");
+            alert("Đặt hàng thành công!");
         }
-
-        alert("Đặt hàng thành công!");
     };
 
     if (cartItems.length === 0) {
         return (
             <div className="cart-page-wrapper">
-                <div className="cart-empty" style={{textAlign: 'center', width: '100%', padding: '50px'}}>
+                <div className="cart-empty" style={{ textAlign: 'center', width: '100%', padding: '50px' }}>
                     <h2>Giỏ hàng của bạn đang trống</h2>
                     <button className="btn-apply" onClick={() => navigate('/')}>Tiếp tục mua sắm</button>
                 </div>
@@ -115,7 +119,7 @@ const Cart = () => {
     return (
         <div className="cart-page-wrapper">
             <div className="cart-main-container">
-                <div className="cart-header-actions" style={{marginBottom: '15px'}}>
+                <div className="cart-header-actions" style={{ marginBottom: '15px' }}>
                     <button className="btn-apply" onClick={() => navigate('/')}>← Tiếp tục mua hàng</button>
                 </div>
 
@@ -129,7 +133,7 @@ const Cart = () => {
                         const isDateMissing = item.isPreOrder && !item.deliveryDate;
 
                         return (
-                            <div key={uniqueKey} className="cart-item-group" style={{marginBottom: '20px'}}>
+                            <div key={uniqueKey} className="cart-item-group" style={{ marginBottom: '20px' }}>
                                 <div className="cart-item-row">
                                     <div className="item-thumbnail">
                                         <img src={item.image || imageMap[item.imageKey]} alt={item.name} />
@@ -137,9 +141,9 @@ const Cart = () => {
                                     <div className="item-title-field">
                                         <div>
                                             <strong>{item.name}</strong>
-                                            <div style={{fontSize: '13px', color: '#666', marginTop: '4px'}}>
-                                                Size: {item.selectedSize} | 
-                                                <span style={{color: item.isPreOrder ? '#e62600' : '#2e7d32', fontWeight: 'bold'}}>
+                                            <div style={{ fontSize: '13px', color: '#666', marginTop: '4px' }}>
+                                                Size: {item.selectedSize} |
+                                                <span style={{ color: item.isPreOrder ? '#e62600' : '#2e7d32', fontWeight: 'bold' }}>
                                                     {item.isPreOrder ? " Hàng đặt trước" : " Hàng thường"}
                                                 </span>
                                             </div>
@@ -164,19 +168,30 @@ const Cart = () => {
                                         <div className="date-picker-box">
                                             <Calendar size={16} />
                                             <label>Ngày giao hàng:</label>
-                                            <input 
-                                                type="date" 
-                                                className="date-input-field"
+                                            <input
+                                                type="date"
+                                                className={`date-input-field ${item.isPreOrder && !item.deliveryDate ? 'input-error' : ''}`}
                                                 style={{ border: isDateMissing ? '1px solid red' : '1px solid #ccc' }}
                                                 value={item.deliveryDate || ''}
                                                 onChange={(e) => updateDeliveryDate(item.id, item.selectedSize, item.isPreOrder, e.target.value)}
+                                            />
+                                        </div>
+                                        <div className="recipient-picker-box">
+                                            <User size={16} />
+                                            <label>Tên người nhận:</label>
+                                            <input
+                                                type="text"
+                                                className={`recipient-input-field ${!recipientName.trim() ? 'input-error' : ''}`}
+                                                placeholder="Nhập tên người nhận..."
+                                                value={recipientName}
+                                                onChange={(e) => setRecipientName(e.target.value)}
                                             />
                                         </div>
                                         {/* Ô ghi chú */}
                                         <div className="note-picker-box">
                                             <FileText size={16} />
                                             <label>Ghi chú:</label>
-                                            <input 
+                                            <input
                                                 type="text"
                                                 className="note-input-field"
                                                 style={{ border: '1px solid #ccc' }}
@@ -197,7 +212,7 @@ const Cart = () => {
                 <div className="coupon-box">
                     <div className="coupon-label">Mã giảm giá</div>
                     <div className="coupon-input-row">
-                        <input type="text" className="coupon-input-field" placeholder="Nhập mã..." value={coupon} onChange={(e)=>setCoupon(e.target.value)} />
+                        <input type="text" className="coupon-input-field" placeholder="Nhập mã..." value={coupon} onChange={(e) => setCoupon(e.target.value)} />
                         <button className="btn-apply">áp dụng</button>
                     </div>
                 </div>

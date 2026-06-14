@@ -2,6 +2,7 @@ import React, { useEffect, useState, useCallback, useMemo } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import './Admin.css';
+import { Pencil, Trash2 } from 'lucide-react';
 
 const jsonBase = import.meta.env.BASE_URL || '/';
 
@@ -256,6 +257,7 @@ function AdminBill({ embedded = false }) {
                     <th>Ngày</th>
                     <th>Tổng</th>
                     <th>Trạng thái</th>
+                    <th>Thao tác</th>
                     <th />
                   </tr>
                 </thead>
@@ -277,26 +279,29 @@ function AdminBill({ embedded = false }) {
                         <td>{r.date}</td>
                         <td>{r.total}</td>
                         <td>{statusLabel(String(r.status || '').toLowerCase())}</td>
-                        <td>
-                          <div className="admin-table_actions">
-                            <button
-                              type="button"
-                              className="admin-table_link"
-                              onClick={() => openEdit(r)}
-                              disabled={saving}
-                            >
-                              Sửa
-                            </button>
-                            <button
-                              type="button"
-                              className="admin-table_link admin-table_link--danger"
-                              onClick={() => handleDelete(r.id)}
-                              disabled={saving}
-                            >
-                              Xóa
-                            </button>
-                          </div>
-                        </td>
+                      <td>
+                        <div className="admin-table_actions">
+                          <button
+                            type="button"
+                            className="admin-table_link"
+                            onClick={() => openEdit(r)}
+                            disabled={saving}
+                          >
+                            <Pencil size={14} /> Sửa
+                          </button>
+
+                          <span className="admin-table_separator">/</span>
+
+                          <button
+                            type="button"
+                            className="admin-table_link admin-table_link--danger"
+                            onClick={() => handleDelete(r.id)}
+                            disabled={saving}
+                          >
+                            <Trash2 size={14} /> Xóa
+                          </button>
+                        </div>
+                      </td>
                       </tr>
                     ))
                   )}

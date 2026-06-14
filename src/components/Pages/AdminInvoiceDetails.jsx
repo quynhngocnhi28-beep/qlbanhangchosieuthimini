@@ -2,6 +2,7 @@ import React, { useEffect, useState, useCallback, useMemo } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import './Admin.css';
+import { Pencil, Trash2 } from 'lucide-react';
 
 const jsonBase = import.meta.env.BASE_URL || '/';
 
@@ -253,7 +254,7 @@ function AdminInvoiceDetails({ embedded = false }) {
                   <th>SL</th>
                   <th>Đơn giá</th>
                   <th>Thành tiền</th>
-                  <th />
+                  <th>Thao tác</th>
                 </tr>
               </thead>
               <tbody>
@@ -282,15 +283,18 @@ function AdminInvoiceDetails({ embedded = false }) {
                             onClick={() => openEdit(r)}
                             disabled={saving}
                           >
-                            Sửa
+                            <Pencil size={14} /> Sửa
                           </button>
+
+                          <span className="admin-table_separator">/</span>
+
                           <button
                             type="button"
                             className="admin-table_link admin-table_link--danger"
                             onClick={() => handleDelete(r.id)}
                             disabled={saving}
                           >
-                            Xóa
+                            <Trash2 size={14} /> Xóa
                           </button>
                         </div>
                       </td>

@@ -2,6 +2,7 @@ import React, { useEffect, useState, useCallback, useMemo } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import './Admin.css';
+import { Pencil, Trash2 } from 'lucide-react';
 
 const jsonBase = import.meta.env.BASE_URL || '/';
 
@@ -230,7 +231,7 @@ function AdminCustomer({ embedded = false }) {
                   <th>ID</th>
                   <th>Tên</th>
                   <th>Điện thoại</th>
-                  <th />
+                  <th>Thao tác</th>
                 </tr>
               </thead>
               <tbody>
@@ -246,7 +247,11 @@ function AdminCustomer({ embedded = false }) {
                   displayedRows.map((r) => (
                     <tr key={r.id}>
                       <td>{r.id}</td>
-                      <td>{r.name}</td>
+                      <td>
+                        <div className="text-align-left-wrapper-4">
+                          {r.name}
+                        </div>
+                      </td>
                       <td>{r.phone}</td>
                       <td>
                         <div className="admin-table_actions">
@@ -256,15 +261,18 @@ function AdminCustomer({ embedded = false }) {
                             onClick={() => openEdit(r)}
                             disabled={saving}
                           >
-                            Sửa
+                            <Pencil size={14} /> Sửa
                           </button>
+
+                          <span className="admin-table_separator">/</span>
+
                           <button
                             type="button"
                             className="admin-table_link admin-table_link--danger"
                             onClick={() => handleDelete(r.id)}
                             disabled={saving}
                           >
-                            Xóa
+                            <Trash2 size={14} /> Xóa
                           </button>
                         </div>
                       </td>
