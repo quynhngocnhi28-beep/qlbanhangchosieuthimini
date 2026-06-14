@@ -241,7 +241,6 @@ const Admin = () => {
           </span>
           <div>
             <div>SaleMini</div>
-            <div>SaleMini@gmail.com</div>
           </div>
         </div>
 
