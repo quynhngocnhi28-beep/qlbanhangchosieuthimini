@@ -4,7 +4,6 @@ import { Search, ShoppingCart, Bell, MapPin, Phone } from "lucide-react";
 import './Header.css';
 import logoImg from "../../img/Logo.png";
 
-// Import map ảnh động của bạn để hiển thị chính xác trên dropdown gợi ý
 import { imageMap } from '../../utils/productImages';
 import { normalizeSearchText, rankProductsBySearch, } from '../../utils/productSearch';
 
@@ -17,16 +16,13 @@ const Header = () => {
     const [currentUser, setCurrentUser] = useState(null);
     const [language, setLanguage] = useState(() => localStorage.getItem('app_lang') || 'VN');
 
-    // State xử lý tìm kiếm
     const [products, setProducts] = useState([]);
     const [searchQuery, setSearchQuery] = useState('');
     const [searchFocused, setSearchFocused] = useState(false);
 
-    // BỔ SUNG: State và Ref điều khiển menu Dropdown của User
     const [userMenuOpen, setUserMenuOpen] = useState(false);
     const userMenuRef = useRef(null);
 
-    // Ref đóng dropdown tìm kiếm khi bấm ra ngoài
     const searchBoxRef = useRef(null);
 
     const translations = {
@@ -88,10 +84,8 @@ const Header = () => {
 
     const t = translations[language];
 
-    // Tạo nhãn hiển thị tên người dùng linh hoạt từ dữ liệu gốc
     const userLabel = currentUser ? (currentUser.fullname || currentUser.name || currentUser.username || 'Tài khoản') : '';
 
-    // Xử lý đăng xuất hệ thống
     const handleLogout = () => {
         setUserMenuOpen(false);
         localStorage.removeItem('currentUser');
@@ -100,7 +94,6 @@ const Header = () => {
         navigate('/');
     };
 
-    // Hàm xóa dấu tiếng Việt để tìm kiếm thông minh hơn
     const normalizeText = (text) => {
         if (!text) return '';
         return text
@@ -111,7 +104,6 @@ const Header = () => {
             .trim();
     };
 
-    // Lọc danh sách hiển thị nhanh ở ô dropdown dựa vào query hiện tại
     const searchMatches = useMemo(() => {
         const queryClean = normalizeText(searchQuery);
         if (!queryClean) return [];
@@ -171,7 +163,6 @@ const Header = () => {
         };
     }, []);
 
-    // Fetch dữ liệu sản phẩm gốc để tìm kiếm liên quan
     useEffect(() => {
         let cancelled = false;
         const loadProducts = async () => {
@@ -189,7 +180,6 @@ const Header = () => {
         return () => { cancelled = true; };
     }, []);
 
-    // Tự động đóng dropdown Tìm kiếm và dropdown User khi bấm ra ngoài vùng tương ứng
     useEffect(() => {
         const handleOutsideClick = (e) => {
             if (searchFocused && searchBoxRef.current && !searchBoxRef.current.contains(e.target)) {
@@ -203,14 +193,12 @@ const Header = () => {
         return () => { document.removeEventListener('mousedown', handleOutsideClick); };
     }, [searchFocused, userMenuOpen]);
 
-    // 1. Khi chọn thẳng vào một sản phẩm gợi ý
     const goToProduct = (product) => {
         setSearchQuery('');
         setSearchFocused(false);
         navigate(`/product/${product.id}`, { state: { product } });
     };
 
-    // 2. Khi KHÔNG chọn sản phẩm nào cụ thể, bấm Enter để tìm kiếm các sản phẩm có từ liên quan
     const handleSearchSubmit = (e) => {
         e.preventDefault();
         if (!searchQuery.trim()) return;
@@ -219,7 +207,6 @@ const Header = () => {
         setSearchFocused(false);
     };
 
-    // Hàm định dạng hiển thị giá tiền linh hoạt tránh lỗi dữ liệu trống
     const renderPrice = (p) => {
         const targetPrice = p.price !== undefined ? p.price : p.currentPrice;
         if (targetPrice === undefined || targetPrice === null) return null;
@@ -331,12 +318,10 @@ const Header = () => {
                         <div className="auth-links flex-align">
                             <a href="#orders" onClick={(e) => { e.preventDefault(); navigate('/orders'); }}>{t.orders}</a>
 
-                            {/* KHỚP HOÀN TOÀN THEO CẤU TRÚC YÊU CẦU CỦA BẠN */}
                             {currentUser ? (
                                 <div className="header-user-menu" ref={userMenuRef}>
                                     <button
                                         type="button"
-                                        /* Thêm class is-active khi menu đang mở (userMenuOpen là true) */
                                         className={`login-link header-user-menu-trigger ${userMenuOpen ? 'is-active' : ''}`}
                                         aria-expanded={userMenuOpen}
                                         aria-haspopup="true"
@@ -357,7 +342,7 @@ const Header = () => {
                                                 role="menuitem"
                                                 onClick={() => { setUserMenuOpen(false); navigate('/profile'); }}
                                             >
-                                                HỒ SƠ 
+                                                HỒ SƠ
                                             </button>
 
                                             {currentUser.role === 'staff' && (

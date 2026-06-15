@@ -5,7 +5,7 @@ import './Login.css';
 
 const Signup = () => {
     const [username, setUsername] = useState('');
-    const [fullName, setFullName] = useState(''); 
+    const [fullName, setFullName] = useState('');
     const [password, setPassword] = useState('');
     const [showPass, setShowPass] = useState(false);
     const [showConfirm, setShowConfirm] = useState(false);
@@ -46,7 +46,7 @@ const Signup = () => {
         const newUser = {
             id: Date.now(),
             user: trimmedUser,
-            name: trimmedName, 
+            name: trimmedName,
             pass: trimmedPass,
             role: 'customer'
         };

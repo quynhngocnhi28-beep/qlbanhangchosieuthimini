@@ -14,7 +14,7 @@
   border: 1.5px solid #000;
   border-radius: 20px;
   padding: 55px 45px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
 }
 
 .login-title {
@@ -102,8 +102,13 @@
   cursor: pointer;
 }
 
-.btn-execute { background-color: #b8d4a8; }
-.btn-reset { background-color: #e0e0e0; }
+.btn-execute {
+  background-color: #b8d4a8;
+}
+
+.btn-reset {
+  background-color: #e0e0e0;
+}
 
 .login-divider {
   text-align: center;
@@ -138,11 +143,34 @@
   cursor: pointer;
 }
 
-.social-icon { width: 20px; height: 20px; }
-.login-error { color: red; font-size: 13px; text-align: center; }
-.login-success { color: green; font-size: 13px; text-align: center; }
-.login-footer { margin-top: 25px; text-align: center; font-size: 14px; }
-.signup-link { color: #007bff; font-weight: bold; text-decoration: none; }
+.social-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.login-error {
+  color: red;
+  font-size: 13px;
+  text-align: center;
+}
+
+.login-success {
+  color: green;
+  font-size: 13px;
+  text-align: center;
+}
+
+.login-footer {
+  margin-top: 25px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.signup-link {
+  color: #007bff;
+  font-weight: bold;
+  text-decoration: none;
+}
 
 .forgot-footer {
   margin-top: 8px;
@@ -163,7 +191,7 @@ input[type="password"]::-webkit-credentials-auto-fill-button {
 }
 
 .password-toggle {
-   position: absolute;
+  position: absolute;
   right: 20px;
   top: 50%;
   transform: translateY(-50%);

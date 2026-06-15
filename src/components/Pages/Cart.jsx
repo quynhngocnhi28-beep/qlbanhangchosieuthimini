@@ -15,7 +15,6 @@ const Cart = () => {
     const [discount, setDiscount] = useState(0);
     const [recipientName, setRecipientName] = useState('');
 
-    // --- LOGIC SẮP XẾP: Hàng đặt trước lên đầu ---
     const sortCartItems = (items) => {
         return [...items].sort((a, b) => {
             if (a.isPreOrder === b.isPreOrder) return 0;
@@ -40,7 +39,6 @@ const Cart = () => {
     const isSameProduct = (item, id, size, isPreOrder) =>
         item.id === id && item.selectedSize === size && item.isPreOrder === isPreOrder;
 
-    // Hàm cập nhật ngày giao hàng
     const updateDeliveryDate = (id, size, isPreOrder, date) => {
         const updatedCart = cartItems.map(item =>
             isSameProduct(item, id, size, isPreOrder) ? { ...item, deliveryDate: date } : item
@@ -48,7 +46,6 @@ const Cart = () => {
         updateCart(updatedCart);
     };
 
-    // Hàm cập nhật ghi chú
     const updateNote = (id, size, isPreOrder, note) => {
         const updatedCart = cartItems.map(item =>
             isSameProduct(item, id, size, isPreOrder) ? { ...item, note: note } : item
@@ -164,7 +161,6 @@ const Cart = () => {
 
                                 {item.isPreOrder && (
                                     <div className="preorder-date-row">
-                                        {/* Ô chọn ngày */}
                                         <div className="date-picker-box">
                                             <Calendar size={16} />
                                             <label>Ngày giao hàng:</label>
@@ -187,7 +183,6 @@ const Cart = () => {
                                                 onChange={(e) => setRecipientName(e.target.value)}
                                             />
                                         </div>
-                                        {/* Ô ghi chú */}
                                         <div className="note-picker-box">
                                             <FileText size={16} />
                                             <label>Ghi chú:</label>

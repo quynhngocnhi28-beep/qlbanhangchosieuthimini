@@ -1,4 +1,3 @@
-/* --- GIỮ NGUYÊN TOÀN BỘ CÁC PHẦN TRÊN CỦA BẠN --- */
 .cart-page-wrapper {
   display: flex;
   max-width: 1100px;
@@ -19,7 +18,6 @@
   min-width: 0;
 }
 
-/* CHỈNH SỬA TẠI ĐÂY: Nếu sản phẩm có khung đặt trước thì bỏ bo góc dưới và margin-bottom */
 .cart-item-group:has(.preorder-date-row) .cart-item-row {
   border-radius: 8px 8px 0 0;
   margin-bottom: 0;
@@ -36,23 +34,18 @@
   margin-bottom: 5px;
 }
 
-/* CHỈNH SỬA TẠI ĐÂY: Khung đặt trước nối liền */
 .preorder-date-row {
   padding: 15px;
-  /* Tăng padding nhẹ cho cân đối */
   background: #fff;
   border: 1px solid #000;
   border-top: none;
-  /* Xóa viền trên để nối với hàng màu hồng */
   border-radius: 0 0 8px 8px;
-  /* Bo góc dưới */
   margin-bottom: 15px;
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
-/* --- GIỮ NGUYÊN TẤT CẢ PHẦN CÒN LẠI --- */
 .item-thumbnail {
   width: 80px;
   height: 70px;
@@ -145,7 +138,8 @@
   outline: none;
 }
 
-.note-input-field, .recipient-input-field {
+.note-input-field,
+.recipient-input-field {
   flex: 1;
 }
 

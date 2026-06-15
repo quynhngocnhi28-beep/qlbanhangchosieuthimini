@@ -37,7 +37,6 @@ const Footer = () => {
             <p className="footer-text">Tiếp nhận đánh giá, phản ánh, kiến nghị của Tổ chức </p>
             <p className="footer-text">Danh sách đánh giá, phản ánh, kiến nghị của Tổ chức </p>
             
-            {/* NHÚNG GOOGLE MAP VÀO ĐÂY */}
             <div className="footer-google-map">
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.26127110967!2d106.67912447590623!3d10.791295258913926!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317528d488e07217%3A0x6339798443310034!2zMTYzIFBoYW4gxJDbmcgTMawdSwgUGjGsOG7nW5nIDIsIFBow7ogTmh14bqtbiwgVGjDoG5oIHBo4buRIEjhu5MgQ2jDrSBNaW5oLCBWaeG7h3QgTmFt!5e0!3m2!1svi!2s!4v1711234567890!5m2!1svi!2s"

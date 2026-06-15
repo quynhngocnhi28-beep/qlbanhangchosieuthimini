@@ -114,7 +114,7 @@ const Profile = () => {
         <div className="profile-page">
             <div className="profile-card">
                 <h1 className="profile-main-title">Hồ sơ</h1>
-                
+
                 <div className="profile-info-grid">
                     <div className="info-item">
                         <span className="info-label">Tên đăng nhập</span>

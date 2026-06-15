@@ -220,7 +220,6 @@ function AdminProduct({ embedded = false }) {
   };
 
   const getProductImage = (key) => {
-    // Nếu imageMap là object dạng: { sp1: '...', sp2: '...' }
     return imageMap[key] || '/img/default.png';
   };
 
