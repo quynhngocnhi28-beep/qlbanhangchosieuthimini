@@ -11,14 +11,12 @@ const DetailProduct = () => {
     const navigate = useNavigate();
     const location = useLocation();
 
-    // Khởi tạo các state gốc của bạn
     const [product, setProduct] = useState(null);
     const [selectedSize, setSelectedSize] = useState('S');
     const [displayPrice, setDisplayPrice] = useState('');
     const [displayOriginalPrice, setDisplayOriginalPrice] = useState(''); // Giá gốc theo size
     const [isFavorite, setIsFavorite] = useState(false);
 
-    // Lắng nghe sự thay đổi của ID để cập nhật mượt mà không cần F5
     useEffect(() => {
         let cancelled = false;
 
@@ -50,7 +48,6 @@ const DetailProduct = () => {
         return () => { cancelled = true; };
     }, [id, location.state]);
 
-    // 1. Logic đồng bộ trái tim - Chỉ đọc từ giỏ hàng hoặc danh sách yêu thích để hiển thị màu
     useEffect(() => {
         const checkFav = () => {
             if (!product) return;
@@ -65,7 +62,6 @@ const DetailProduct = () => {
         return () => window.removeEventListener('cartUpdated', checkFav);
     }, [product]);
 
-    // 2. Logic thay đổi giá và giá giảm theo size khi bấm chọn tag size
     useEffect(() => {
         if (product) {
             setDisplayPrice(product[`price${selectedSize}`] || product.price || product.currentPrice);
@@ -73,7 +69,6 @@ const DetailProduct = () => {
         }
     }, [product, selectedSize]);
 
-    // Hàm định dạng hiển thị giá tiền
     const formatPrice = (priceVal) => {
         if (priceVal === undefined || priceVal === null) return '';
         if (typeof priceVal === 'string' && (priceVal.includes('đ') || priceVal.toLowerCase().includes('vnd'))) {
@@ -83,24 +78,19 @@ const DetailProduct = () => {
         return isNaN(numericPrice) ? priceVal : `${numericPrice.toLocaleString('vi-VN')} đ`;
     };
 
-    // CHỈNH SỬA: Ấn trái tim chỉ lật trạng thái màu sắc trên giao diện, TUYỆT ĐỐI không đẩy vào giỏ hàng
     const handleFavoriteClick = (e) => {
         e.stopPropagation();
         if (!product) return;
         
-        // Chỉ thay đổi trạng thái tim hiển thị trực quan
         setIsFavorite(!isFavorite);
     };
 
-    // CHỈNH SỬA: Khi ấn nút "Mua ngay" thì mới gom sản phẩm + đúng size được chọn đẩy vào giỏ hàng
     const handleBuyNow = () => {
         if (!product) return;
         let cart = JSON.parse(localStorage.getItem('cart') || '[]');
         
-        // Biến trạng thái pre-order đi kèm nếu bạn bật tim hoặc theo logic gốc của bạn
         const isPreOrderType = isFavorite; 
         
-        // Kiểm tra xem sản phẩm với đúng Size này đã nằm trong giỏ hàng chưa
         const existingIdx = cart.findIndex(item => 
             String(item.id) === String(product.id) && 
             item.selectedSize === selectedSize &&
@@ -108,10 +98,8 @@ const DetailProduct = () => {
         );
 
         if (existingIdx > -1) {
-            // Có rồi thì tăng số lượng lên 1
             cart[existingIdx].quantity += 1;
         } else {
-            // Chưa có thì thêm mới vào giỏ hàng kèm theo giá của size đang hiển thị lúc đó
             cart.push({
                 ...product,
                 currentPrice: displayPrice,
@@ -125,11 +113,9 @@ const DetailProduct = () => {
             });
         }
         
-        // Lưu vào localStorage và bắn event đồng bộ số lượng cho Header ngay lập tức
         localStorage.setItem('cart', JSON.stringify(cart));
         window.dispatchEvent(new Event('cartUpdated'));
         
-        // Chuyển hướng mượt mà sang trang giỏ hàng
         navigate('/cart');
     };
 
@@ -145,7 +131,6 @@ const DetailProduct = () => {
                         alt={product.name} 
                         className="detail-main-image"
                     />
-                    {/* Nút trái tim chỉ thay đổi màu sắc tại chỗ */}
                     <div className="heart-icon-wrapper" onClick={handleFavoriteClick}>
                         <Heart size={24} fill={isFavorite ? "#e62600" : "none"} color={isFavorite ? "#e62600" : "#333"} />
                     </div>
@@ -156,7 +141,6 @@ const DetailProduct = () => {
                     <div className="detail-sizes-box">
                         <span className="size-label">Kích thước:</span>
                         <div className="size-tags-wrapper">
-                            {/* Bấm đổi size chỉ thay đổi state active và hiển thị lại giá bán */}
                             {['S', 'M', 'L'].map(size => product[`size${size}`] && (
                                 <button 
                                     key={size}
@@ -181,7 +165,6 @@ const DetailProduct = () => {
                     </div>
 
                     <div className="detail-actions">
-                        {/* Nút quyết định duy nhất để nhảy vào giỏ hàng */}
                         <button className="add-to-cart-action-btn" onClick={handleBuyNow}>
                             <ShoppingCart size={20} /> Mua ngay
                         </button>

@@ -69,7 +69,7 @@
 }
 
 .heart-icon-wrapper:active svg {
-    transform: scale(0.85); /* Hiệu ứng nhấn lún xuống */
+    transform: scale(0.85); 
 }
 
 .detail-info-wrapper {

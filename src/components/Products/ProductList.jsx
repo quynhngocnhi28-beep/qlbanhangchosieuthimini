@@ -42,27 +42,23 @@ const ProductList = () => {
 
     const getFilteredAndSortedProducts = () => {
         const savedCart = JSON.parse(localStorage.getItem('cart') || '[]');
-        // Lấy danh sách ID đã được nhấn trái tim
         const favoriteIds = savedCart.filter(item => item.addedViaHeart).map(item => item.id);
 
         let result = products;
 
-        // 1. Lọc theo Category
         if (selectedCategoryId !== null) {
             result = result.filter(p => p.categoryId === selectedCategoryId);
         }
 
-        // 2. Lọc theo Search Term (Tìm kiếm ưu tiên)
         if (searchTerm.trim() !== '') {
             const term = searchTerm.toLowerCase();
             result = result.filter(p => p.name.toLowerCase().includes(term));
         }
 
-        // 3. Sắp xếp: Ưu tiên hàng đã nhấn trái tim lên đầu
         return [...result].sort((a, b) => {
             const aIsFav = favoriteIds.includes(a.id) ? 1 : 0;
             const bIsFav = favoriteIds.includes(b.id) ? 1 : 0;
-            return bIsFav - aIsFav; // Trả về 1 nếu b là fav, -1 nếu a là fav
+            return bIsFav - aIsFav; 
         });
     };
 
