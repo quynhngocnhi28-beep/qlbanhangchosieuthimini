@@ -14,7 +14,7 @@ const DetailProduct = () => {
     const [product, setProduct] = useState(null);
     const [selectedSize, setSelectedSize] = useState('S');
     const [displayPrice, setDisplayPrice] = useState('');
-    const [displayOriginalPrice, setDisplayOriginalPrice] = useState(''); // Giá gốc theo size
+    const [displayOriginalPrice, setDisplayOriginalPrice] = useState(''); 
     const [isFavorite, setIsFavorite] = useState(false);
 
     useEffect(() => {
