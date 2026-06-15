@@ -426,7 +426,12 @@ const Admin = () => {
             <div className="ruang-section-body">
               {adminSection === 'dashboard' && (
                 <div className="ruang-dashboard">
-                  <div className="ruang-cards-grid">
+                  <div className="ruang-cards-grid"
+                    onClick={() => setAdminSection('bill')}
+                    role="button"
+                    tabIndex="0"
+                    style={{ cursor: 'pointer' }}
+                  >
                     <div className="ruang-stat-card">
                       <div className="ruang-stat-card__body">
                         <div className="ruang-stat-card__icon-box">
@@ -440,7 +445,12 @@ const Admin = () => {
                     </div>
 
                     <div className="ruang-stat-card">
-                      <div className="ruang-stat-card__body">
+                      <div className="ruang-stat-card__body"
+                        onClick={() => setAdminSection('bill')}
+                        role="button"
+                        tabIndex="0"
+                        style={{ cursor: 'pointer' }}
+                      >
                         <div className="ruang-stat-card__icon-box">
                           <i className="fa-solid fa-list" />
                         </div>
@@ -451,7 +461,12 @@ const Admin = () => {
                       </div>
                     </div>
 
-                    <div className="ruang-stat-card">
+                    <div className="ruang-stat-card"
+                      onClick={() => setAdminSection('products')}
+                      role="button"
+                      tabIndex="0"
+                      style={{ cursor: 'pointer' }}
+                    >
                       <div className="ruang-stat-card__body">
                         <div className="ruang-stat-card__icon-box">
                           <i className="fa-solid fa-box" />
@@ -504,7 +519,12 @@ const Admin = () => {
 
                   </div>
                   <div className="admin-dashboard-row">
-                    <div className="ruang-chart-card">
+                    <div className="ruang-chart-card"
+                      onClick={() => setAdminSection('products')}
+                      role="button"
+                      tabIndex="0"
+                      style={{ cursor: 'pointer' }}
+                    >
                       <div className="ruang-chart-card__header">
                         <h6 className="ruang-chart-card__title">Top 5 sản phẩm bán chạy</h6>
                       </div>
@@ -520,7 +540,12 @@ const Admin = () => {
                       </div>
                     </div>
 
-                    <div className="ruang-table-card">
+                    <div className="ruang-table-card"
+                      onClick={() => setAdminSection('bill')}
+                      role="button"
+                      tabIndex="0"
+                      style={{ cursor: 'pointer' }}
+                    >
                       <div className="ruang-table-card__header">
                         <h6 className="ruang-table-card__title">Hóa đơn gần đây</h6>
                       </div>
@@ -554,7 +579,12 @@ const Admin = () => {
                       </div>
                     </div>
 
-                    <div className="ruang-chart-card">
+                    <div className="ruang-chart-card"
+                      onClick={() => setAdminSection('customer')}
+                      role="button"
+                      tabIndex="0"
+                      style={{ cursor: 'pointer' }}
+                    >
                       <div className="ruang-chart-card__header">
                         <h6 className="ruang-chart-card__title">Top 3 Khách hàng thân thiết</h6>
                       </div>
