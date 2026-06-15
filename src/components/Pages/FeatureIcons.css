@@ -1,11 +1,11 @@
-.home-promotion {
+.home-featureicons {
     width: 100%;
     max-width: 1370px;
     margin: 0 auto;
     padding: 20px 0;
 }
 
-.promotion-nav {
+.featureicons-nav {
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -49,7 +49,7 @@
 }
 
 @media (max-width: 768px) {
-    .promotion-nav {
+    .featureicons-nav {
         gap: 10px;
     }
 
@@ -65,11 +65,11 @@
 }
 
 @media (max-width: 480px) {
-    .home-promotion {
+    .home-featureicons {
         padding: 10px 0;
     }
 
-    .promotion-nav {
+    .featureicons-nav {
         flex-direction: row;
         overflow-x: auto;
         justify-content: flex-start;

@@ -17,7 +17,7 @@ import AdminCustomer from './components/Pages/AdminCustomer';
 import AdminEmployee from './components/Pages/AdminEmployee';
 import AdminBill from './components/Pages/AdminBill';
 import AdminInvoiceDetails from './components/Pages/AdminInvoiceDetails';
-import HomePromotion from './components/Pages/HomePromotion';
+import FeatureIcons from './components/Pages/FeatureIcons';
 
 
 function App() {
@@ -36,7 +36,7 @@ function App() {
           element={
             <>
               <Banner />
-              <HomePromotion />
+              <FeatureIcons />
               <ProductList />
             </>
           }

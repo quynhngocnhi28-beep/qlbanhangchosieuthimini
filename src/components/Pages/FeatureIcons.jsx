@@ -1,8 +1,8 @@
 import React from 'react';
 import { Users, MapPin, Award, Zap, Gift, Trophy } from 'lucide-react';
-import './HomePromotion.css';
+import './FeatureIcons.css';
 
-function HomePromotion() {
+function FeatureIcons() {
     const navItems = [
         { id: 1, label: 'Nhãn hàng', icon: Users },
         { id: 2, label: 'Cửa hàng', icon: MapPin },
@@ -13,8 +13,8 @@ function HomePromotion() {
     ];
 
     return (
-        <div className="home-promotion">
-            <div className="promotion-nav">
+        <div className="home-featureicons">
+            <div className="featureicons-nav">
                 {navItems.map((item) => {
                     const IconComponent = item.icon;
                     return (
@@ -29,4 +29,4 @@ function HomePromotion() {
     );
 }
 
-export default HomePromotion;
+export default FeatureIcons;
