@@ -282,7 +282,7 @@ const Admin = () => {
                 }}
               >
                 <i className="fa-solid fa-tags" aria-hidden />
-                Loại sản phẩm
+                Danh mục
               </button>
             </li>
             <li>
